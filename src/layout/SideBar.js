@@ -15,7 +15,7 @@ const SideBar = () => {
         <NavLink to="/home" className="hover:text-black font-semibold">
           Home
         </NavLink>
-        <div className="dropdown dropdown-hover hover:text-black font-semibold ">
+        <NavLink to="/shop" className="dropdown dropdown-hover hover:text-black font-semibold ">
           <label tabIndex={0} className="cursor-pointer">
             Shop <ChevronDown className="inline-block"/>
           </label>
@@ -30,7 +30,7 @@ const SideBar = () => {
               <NavLink to="item1">Item2</NavLink>
             </li>
           </ul> */}
-        </div>
+        </NavLink>
         <NavLink to="/about" className=" hover:text-black font-semibold">
           About
         </NavLink>
