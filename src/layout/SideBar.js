@@ -5,7 +5,7 @@ import "tailwindcss/tailwind.css";
 
 const SideBar = () => {
   return (
-    <div className="flex justify-between items-center p-4 bg-white text-gray-500">
+    <div className="flex justify-between items-center p-4 pl-8 bg-white text-gray-500">
       <div>
         <NavLink to="/" className="text-2xl font-bold text-black">
           Bandage
