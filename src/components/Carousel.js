@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import slide1 from "../Assets/slide1.jpg";
-import slide2 from "../Assets/slide2.png";
+import coursel1 from "../Assets/coursel1.png";
 import { NavLink } from "react-router-dom";
 
-const Slider = () => {
+const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const items = [
     {
-      image: slide1,
-      caption: "NEW COLLECTION",
+      image: coursel1,
+      caption: "VİTA Classic Product",
       description:
         "We know how large objet will act, but things on a small scale",
+      price: "$16.48",
     },
     // {
     //   image: slide2,
@@ -39,42 +39,47 @@ const Slider = () => {
   };
 
   return (
-    <div className="carousel-content" onClick={handleSlide}>
+    <div className="carousel-content bg-[#23856D]" onClick={handleSlide}>
+      
+      <div className="carousel-content flex  ">
       <button
-        className=" absolute z-20 top-2/3 left-2 transform -translate-y-1/2 text-white"
+        className="top-2/3 left-2 transform -translate-y-1/2 text-white"
         onClick={prevSlide}
       >
         <ChevronLeft className="w-20 h-16" />
       </button>
-      <div className="carousel-content flex  ">
         {items.map((item, index) => (
           <div
             key={index}
             className={`${
               index === currentIndex ? "active" : "inactive"
-            } relative h-screen w-screen bg-cover bg-center`}
-            style={{ backgroundImage: `url(${item.image})`, width: "100%" }}
+            } h-screen w-screen bg-cover`}
+            style={{ backgroundImage: `url(${item.image})`, width: "30%" }}
           >
             <div className="flex flex-col flex-wrap items-start py-80 px-40 text-white">
               <h1 className="text-6xl font-bold">{item.caption}</h1>
               <h4 className="text-xl">{item.description}</h4>
-              <NavLink
-                to="/shop"
+              <div>
+                <p>{item.price}</p>
+                <NavLink
+                to="/cart"
                 className="bg-[#2DC071] text-white p-4 px-10 mt-4 rounded-md text-xl "
               >
-                Shop Now
-              </NavLink>
+                ADD TO CART
+              </NavLink></div>
+              
             </div>
           </div>
         ))}
-      </div>
-      <button
-        className="absolute z-20 top-2/3 right-2 transform -translate-y-1/2 text-white"
+        <button
+        className="absolute top-2/3 right-2 transform -translate-y-1/2 text-white"
         onClick={nextSlide}
       >
         <ChevronRight className="w-20 h-16"/>
       </button>
+      </div>
+      
     </div>
   );
 };
-export default Slider;
+export default Carousel;

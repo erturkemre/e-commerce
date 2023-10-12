@@ -19,13 +19,13 @@ const Footer = () => {
           Bandage
         </NavLink>
         <div className="text-blue-500">
-          <NavLink to="https://www.instagram.com/">
+          <NavLink to="https://www.instagram.com/" className="px-1" >
             <Instagram className="inline-block" />
           </NavLink>
-          <NavLink to="https://www.facebook.com/">
+          <NavLink to="https://www.facebook.com/"className="px-1">
             <FacebookIcon className="inline-block" />
           </NavLink>
-          <NavLink to="https://www.x.com/">
+          <NavLink to="https://www.x.com/" className="px-1">
             <TwitterIcon className="inline-block" />
           </NavLink>
         </div>

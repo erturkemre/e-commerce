@@ -18,19 +18,19 @@ const Header = () => {
       <div>
         <p>Follow Us and get a chance to win 80% off</p>
       </div>
-      <div>
+      <div className="">
         <p>Follow Us :
           
-        <Link to="https://www.instagram.com/">
+        <Link to="https://www.instagram.com/" className="px-1">
           <Instagram className="inline-block" />
           </Link>
-          <Link to="https://www.youtube.com/">
+          <Link to="https://www.youtube.com/" className="px-1">
           <Youtube className="inline-block" />
           </Link>
-          <Link to="https://www.facebook.com/">
+          <Link to="https://www.facebook.com/" className="px-1">
           <Facebook className="inline-block" />
           </Link>
-          <Link to="https://www.x.com/">
+          <Link to="https://www.x.com/"  className="px-1">
           <Twitter className="inline-block" />
           </Link>
         </p>
