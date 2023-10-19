@@ -12,12 +12,15 @@ const SideBar = () => {
         </NavLink>
       </div>
       <div className="flex space-x-4 ">
-        <NavLink to="/home" className="hover:text-black font-semibold">
+        <NavLink to="/" className="hover:text-black font-semibold">
           Home
         </NavLink>
-        <NavLink to="/shop" className="dropdown dropdown-hover hover:text-black font-semibold ">
+        <NavLink
+          to="/shop"
+          className="dropdown dropdown-hover hover:text-black font-semibold "
+        >
           <label tabIndex={0} className="cursor-pointer">
-            Shop <ChevronDown className="inline-block"/>
+            Shop <ChevronDown className="inline-block" />
           </label>
           {/* <ul
             tabIndex={0}

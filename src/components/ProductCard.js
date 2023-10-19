@@ -1,13 +1,6 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-} from "reactstrap";
+import { Card, CardBody, CardSubtitle, CardText, CardTitle } from "reactstrap";
 import product1 from "../Assets/product.png";
 const products = [
   {
@@ -61,14 +54,14 @@ const ProductCard = () => {
         </div>
         <div className="flex flex-row justify-between flex-wrap overflow-hidden">
           {products.map((product, index) => (
-            <Card className="mb-10 mx-[1%]"
+            <Card
+              className="mb-10 mx-[1%]"
               style={{
                 width: "15rem",
-                
               }}
             >
               <img className="w-15" alt={product.id} src={product.image} />
-              <CardBody className="items-center">
+              <CardBody className="flex flex-col items-center">
                 <CardTitle tag="h5">{product.name}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                   {product.description}
