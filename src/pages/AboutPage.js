@@ -21,19 +21,19 @@ const AboutPage = ()=>{
             </div>
             <div className="h-[16.5rem]">
                 <div className="flex flex-row items-center justify-center ">
-                    <div className="flex flex-col items-center px-16">
+                    <div className="flex flex-col items-center p-20">
                        <p className="text-[#252B42] font-Montserrat font-bold text-6xl">15K</p>
                        <p className="text-[#737373] font-Montserrat font-bold text-sm">Happy Customers</p>
                     </div>
-                    <div className="flex flex-col items-center p-16">
+                    <div className="flex flex-col items-center p-20">
                        <p className="text-[#252B42] font-Montserrat font-bold text-6xl">150K</p>
                        <p className="text-[#737373] font-Montserrat font-bold text-sm">Monthly Visitors</p>
                     </div>
-                    <div className="flex flex-col items-center p-16">
+                    <div className="flex flex-col items-center p-20">
                        <p className="text-[#252B42] font-Montserrat font-bold text-6xl">15</p>
                        <p className="text-[#737373] font-Montserrat font-bold text-sm">Countries Worldwide</p>
                     </div>
-                    <div className="flex flex-col items-center p-16">
+                    <div className="flex flex-col items-center p-20">
                        <p className="text-[#252B42] font-Montserrat font-bold text-6xl">100+</p>
                        <p className="text-[#737373] font-Montserrat font-bold text-sm">Top Partners</p>
                     </div>
