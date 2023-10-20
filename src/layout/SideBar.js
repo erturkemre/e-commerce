@@ -38,7 +38,7 @@ const SideBar = () => {
           About
         </NavLink>
         <NavLink to="/blog" className=" hover:text-black font-semibold">
-          Blog
+          Team
         </NavLink>
         <NavLink to="/contact" className=" hover:text-black font-semibold">
           Contact
