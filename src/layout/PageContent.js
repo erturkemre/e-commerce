@@ -5,22 +5,26 @@ import MainPage from "../pages/MainPage";
 import ProductListPage from "../pages/ProductListPage";
 import AboutPage from "../pages/AboutPage";
 import TeamPage from "../pages/TeamPage";
+import ProductPage from "../pages/ProductPage";
 
 const PageContent = () => {
   return (
     <>
       <Switch>
         <Route path="/" exact>
-            <MainPage/>
+          <MainPage />
         </Route>
         <Route path="/shop" exact>
-            <ProductListPage/>
+          <ProductListPage />
         </Route>
         <Route path="/about" exact>
-            <AboutPage/>
+          <AboutPage />
         </Route>
         <Route path="/team" exact>
-            <TeamPage />
+          <TeamPage />
+        </Route>
+        <Route path="/shop:productId" exact>
+          <ProductPage />
         </Route>
       </Switch>
     </>

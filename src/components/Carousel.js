@@ -34,51 +34,56 @@ const Carousel = () => {
     const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
   }, [currentIndex]);
-  const handleSlide = () => {
-
-  };
+  const handleSlide = () => {};
 
   return (
-    <div className="carousel-content bg-[#23856D]" onClick={handleSlide}>
-      
-      <div className="carousel-content flex  ">
-      <button
-        className="top-2/3 left-2 transform -translate-y-1/2 text-white"
-        onClick={prevSlide}
-      >
-        <ChevronLeft className="w-20 h-16" />
-      </button>
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={`${
-              index === currentIndex ? "active" : "inactive"
-            } h-screen w-screen bg-cover`}
-            style={{ backgroundImage: `url(${item.image})`, width: "30%" }}
+    <div
+      className="flex flex-row carousel-content bg-[#23856D] w-[100%] h-[38rem] "
+      onClick={handleSlide}
+    >
+      <div className=" flex items-center">
+        <div>
+          <button
+            className="top-2/3 left-2 transform -translate-y-1/2 text-white"
+            onClick={prevSlide}
           >
-            <div className="flex flex-col flex-wrap items-start py-80 px-40 text-white">
-              <h1 className="text-6xl font-bold">{item.caption}</h1>
-              <h4 className="text-xl">{item.description}</h4>
+            <ChevronLeft className="w-20 h-16" />
+          </button>
+        </div>
+        <div className="flex flex-row">
+          {items.map((item, index) => (
+            <div className="flex flex-row items-center ">
               <div>
-                <p>{item.price}</p>
-                <NavLink
-                to="/cart"
-                className="bg-[#2DC071] text-white p-4 px-10 mt-4 rounded-md text-xl "
-              >
-                ADD TO CART
-              </NavLink></div>
-              
+                <h1 className="flex flex-wrap text-6xl font-bold text-white p-3 ">
+                  {item.caption}
+                </h1>
+                <p className="flex flex-wrap text-white text-sm p-3">
+                  {item.description}
+                </p>
+                <div className="flex flex-row items-center">
+                  <h3 className="text-2xl font-bold text-white mx-3">
+                    {item.price}
+                  </h3>
+                  <button className="bg-[#2DC071] text-white rounded-md py-3 px-10">
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+              <div className="px-32 ">
+                <img src={item.image} alt="coursel1" />
+              </div>
             </div>
-          </div>
-        ))}
-        <button
-        className="absolute top-2/3 right-2 transform -translate-y-1/2 text-white"
-        onClick={nextSlide}
-      >
-        <ChevronRight className="w-20 h-16"/>
-      </button>
+          ))}
+        </div>
+        <div>
+          <button
+            className="top-2/3 right-0 transform -translate-y-1/2 text-white"
+            onClick={nextSlide}
+          >
+            <ChevronRight className="w-20 h-16" />
+          </button>
+        </div>
       </div>
-      
     </div>
   );
 };

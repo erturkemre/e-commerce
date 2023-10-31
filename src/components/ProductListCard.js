@@ -1,9 +1,17 @@
 import React from "react";
 import "tailwindcss/tailwind.css";
-import { Card, CardBody, CardSubtitle, CardText, CardTitle } from "reactstrap";
+import {
+  Card,
+  CardBody,
+  CardSubtitle,
+  CardText,
+  CardTitle,
+} from "reactstrap";
 import product1 from "../Assets/product.png";
 import { LayoutGridIcon, List } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+
 const products = [
   {
     id: 1,
@@ -74,6 +82,7 @@ const ProductListCard = () => {
                 width: "15rem",
               }}
             >
+              <NavLink to={`/shop/${product.id}`}>
               <img className="w-15" alt={product.id} src={product.image} />
               <CardBody className="flex flex-col items-center">
                 <CardTitle tag="h5">{product.name}</CardTitle>
@@ -82,6 +91,7 @@ const ProductListCard = () => {
                 </CardSubtitle>
                 <CardText>{product.price}</CardText>
               </CardBody>
+              </NavLink>
             </Card>
           ))}
         </div>

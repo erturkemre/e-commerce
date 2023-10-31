@@ -37,10 +37,10 @@ const SideBar = () => {
         <NavLink to="/about" className=" hover:text-black font-semibold">
           About
         </NavLink>
-        <NavLink to="/blog" className=" hover:text-black font-semibold">
+        <NavLink to="/team" className=" hover:text-black font-semibold">
           Team
         </NavLink>
-        <NavLink to="/contact" className=" hover:text-black font-semibold">
+        <NavLink to={"/shop:productId" } className=" hover:text-black font-semibold">
           Contact
         </NavLink>
       </div>
@@ -57,6 +57,7 @@ const SideBar = () => {
         <NavLink to="/fav" className="btn m-1 text-blue-500">
           <Heart className="inline-block" />
         </NavLink>
+
       </div>
     </div>
   );
