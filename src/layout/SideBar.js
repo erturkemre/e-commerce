@@ -41,7 +41,7 @@ const SideBar = () => {
         <NavLink to="/team" className=" hover:text-black font-semibold">
           Team
         </NavLink>
-        <NavLink to={"/shop:productId" } className=" hover:text-black font-semibold">
+        <NavLink to={"/contact" } className=" hover:text-black font-semibold">
           Contact
         </NavLink>
       </div>

@@ -6,6 +6,8 @@ import ProductListPage from "../pages/ProductListPage";
 import AboutPage from "../pages/AboutPage";
 import TeamPage from "../pages/TeamPage";
 import ProductPage from "../pages/ProductPage";
+import ContactPage from "../pages/ContactPage";
+import PricingPage from "../pages/PricingPage";
 
 const PageContent = () => {
   return (
@@ -23,8 +25,14 @@ const PageContent = () => {
         <Route path="/team" exact>
           <TeamPage />
         </Route>
-        <Route path="/shop:productId" exact>
+        <Route path="/shop/:productId" exact>
           <ProductPage />
+        </Route>
+        <Route path="/contact" exact>
+          <ContactPage />
+        </Route>
+        <Route path="/pricing" exact>
+          <PricingPage />
         </Route>
       </Switch>
     </>

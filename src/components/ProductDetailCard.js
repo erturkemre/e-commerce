@@ -1,15 +1,14 @@
 import { Carousel } from "@material-tailwind/react";
 import { ChevronRight } from "lucide-react";
 import { React } from "react";
-import { useParams } from "react-router-dom";
 import { NavLink } from "reactstrap";
 
 
 
 
 
-const ProductDetailCard = ({mayData}) => {
-  const { productId } = useParams();
+const ProductDetailCard = ({myData}) => {
+
   return (
     <div className="bg-[#FAFAFA] w-[100%] flex ">
       <div className="flex flex-col mx-24 ">
@@ -63,9 +62,9 @@ const ProductDetailCard = ({mayData}) => {
             </div>
           </div>
           <div>
-            <h4>{productId.name}</h4>
-            <h3>{productId.price}</h3>
-            <p>{productId.description}</p>
+            <h4>{myData?.name}</h4>
+            <h3>{myData?.price}</h3>
+            <p>{myData?.description}</p>
 
           </div>
         </div>
