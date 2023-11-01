@@ -8,8 +8,8 @@ const AboutPage = () => {
     <div className="">
       <AboutBanner />
       <div className="p-20">
-        <div className="flex flex-row items-center justify-center">
-          <div className="p-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center">
+          <div className="flex flex-col items-center flex-wrap sm:items-start p-8">
             <p className="text-[#E74040]">Problems trying</p>
             <h3 className="text-[#252B42] font-bold text-lg ">
               Met minim Mollie non desert Alamo est sit cliquey dolor do met
@@ -25,7 +25,7 @@ const AboutPage = () => {
         </div>
       </div>
       <div className="h-[16.5rem]">
-        <div className="flex flex-row items-center justify-center ">
+        <div className="flex flex-col sm:flex-row items-center justify-center ">
           <div className="flex flex-col items-center p-20">
             <p className="text-[#252B42] font-Montserrat font-bold text-6xl">
               15K
@@ -60,15 +60,15 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-
+      
       <AboutVideoCard />
       <OurTeam />
       <div className="flex flex-col justify-center">
-        <div className="flex flex-col justify-center items-center p-10 bg-[#FAFAFA]">
+        <div className="flex flex-col w-[100%] justify-center items-center p-10 bg-[#FAFAFA]">
           <h2 className="text-[#252B42] font-bold text-4xl">
             Big Companies Are Here
           </h2>
-          <p className="text-[#737373] text-sm">
+          <p className="flex w-[44%] flex-wrap text-center text-[#737373] text-sm">
             Problems trying to resolve the conflict between the two major realms
             of Classical physics: Newtonian mechanics{" "}
           </p>

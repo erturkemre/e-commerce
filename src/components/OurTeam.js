@@ -34,7 +34,7 @@ const team = [
 
 const OurTeam = () => {
   return (
-    <div className="flex justify-center items-center bg-white p-12">
+    <div className="flex flex-col justify-center items-center bg-white p-12">
       <div className="">
         <div className="flex flex-col justify-center items-center pb-10">
           <h2 className="text-[#252B42] font-bold text-4xl">Meet Our Team</h2>
@@ -43,7 +43,7 @@ const OurTeam = () => {
             of Classical physics: Newtonian mechanics.
           </p>
         </div>
-        <div className="flex  ">
+        <div className="flex flex-col items-center sm:flex-row ">
           {team.map((item, index) => {
             return (
               <div key={index} className="flex flex-col w-80 h-96 m-5 " >

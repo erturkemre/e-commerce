@@ -47,8 +47,8 @@ const ProductListPage = () => {
     <div>
       <div className="bg-[#FAFAFA] p-4">
         <div className=" flex flex-col items-center">
-          <div className="flex justify-between w-[75%] p-5 px-16 ">
-            <p className="w-6 text-[##252B42] text-2xl font-bold">Shop</p>
+          <div className="flex flex-col items-center sm:flex-row  sm:justify-between w-[75%] p-5 px-16 ">
+            <p className=" text-[##252B42] text-2xl font-bold">Shop</p>
             <div className="flex flex-row items-center ">
               <NavLink
                 to="/"
@@ -63,7 +63,7 @@ const ProductListPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap w-[88%] justify-center">
+          <div className="flex flex-col items-center sm:flex-row sm:flex-wrap w-[88%] justify-center">
             {products.map((product, index) => (
               <div key={product.id}>
                 <div className="flex flex-col w-52 h-56 justify-center items-center">

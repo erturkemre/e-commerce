@@ -10,13 +10,13 @@ import brand6 from "../Assets/brandAssets/brand6.png";
 const BrandBanner = () => {
   return (
     <>
-      <div className="flex flex-row bg-[#FAFAFA] justify-evenly items-center p-10 px-28 h-44 ">
-        <img src={brand1} />
-        <img src={brand2} />
-        <img src={brand3} />
-        <img src={brand4} />
-        <img src={brand5} />
-        <img src={brand6} />
+      <div className="flex flex-col sm:flex-row h-[100%] bg-[#FAFAFA] justify-evenly items-center sm:px-28 ">
+        <img className="py-10 " src={brand1} />
+        <img className="py-10 " src={brand2} />
+        <img className="py-10 " src={brand3} />
+        <img className="py-10 " src={brand4} />
+        <img className="py-10 " src={brand5} />
+        <img className="py-10 " src={brand6} />
       </div>
       <div className="bg-white h-2"></div>
     </>

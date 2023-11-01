@@ -3,8 +3,8 @@ import banner from "../Assets/AboutBannerpng.png";
 
 const AboutBanner = () => {
   return (
-    <div className="flex flex-row justify-center">
-      <div className="flex flex-col items-start justify-center ">
+    <div className="flex flex-col sm:flex-row justify-center">
+      <div className="flex flex-col items-center sm:items-start justify-center ">
         <h1 className="text-[#252B42] font-bold text-6xl mt-8">ABOUT US</h1>
         <p className="text-lg text-[#252B42] mt-4">We know how large objects will act, but things on a small scale</p>
         <button className="bg-[#23A6F0] text-white px-6 py-3 mt-4 rounded-md">Get Quote Now</button>
