@@ -4,14 +4,15 @@ import { User2, Search, ShoppingCart, Heart, ChevronDown } from "lucide-react";
 import "tailwindcss/tailwind.css";
 
 const SideBar = () => {
+  
   return (
-    <div className="flex justify-between items-center p-4 pl-8 bg-white text-gray-500">
+    <div className="flex justify-between sm:items-center p-4 pl-8 bg-white text-gray-500 ">
       <div>
         <NavLink to="/" className="text-2xl font-bold text-black">
           Bandage
         </NavLink>
       </div>
-      <div className="flex space-x-4 ">
+      <div className="flex flex-col pt-12 sm:pt-0 sm:flex-row sm:space-x-4 ">
         <NavLink to="/" className="hover:text-black font-semibold">
           Home
         </NavLink>
@@ -44,17 +45,17 @@ const SideBar = () => {
           Contact
         </NavLink>
       </div>
-      <div className="flex space-x-4">
-        <NavLink to="/login" className="btn m-1 text-blue-500">
+      <div className="flex flex-row space-x-4 ">
+        <NavLink to="/login" className="hidden sm:flex text-[#252B42]  sm:btn sm:m-1 sm:text-blue-500">
           <User2 className="inline-block mr-1" /> Login/Register
         </NavLink>
-        <NavLink to="" className="btn m-1 text-blue-500">
+        <NavLink to="" className="btn m-1 text-[#252B42] sm:text-blue-500">
           <Search className="inline-block" />
         </NavLink>
-        <NavLink to="/cart" className="btn m-1 text-blue-500">
+        <NavLink to="/cart" className="btn m-1 text-[#252B42] sm:text-blue-500">
           <ShoppingCart className="inline-block" />
         </NavLink>
-        <NavLink to="/fav" className="btn m-1 text-blue-500">
+        <NavLink to="/fav" className="btn m-1 text-[#252B42] sm:text-blue-500">
           <Heart className="inline-block" />
         </NavLink>
 

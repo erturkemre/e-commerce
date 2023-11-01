@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import coursel1 from "../Assets/coursel1.png";
-import { NavLink } from "react-router-dom";
+
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const items = [
     {
       image: coursel1,
-      caption: "VİTA Classic Product",
+      caption: "Vita Classic Product",
       description:
         "We know how large objet will act, but things on a small scale",
       price: "$16.48",
@@ -38,7 +38,7 @@ const Carousel = () => {
 
   return (
     <div
-      className="flex flex-row carousel-content bg-[#23856D] w-[100%] h-[38rem] "
+      className="flex flex-col sm:flex-row carousel-content bg-[#23856D] w-[100%] sm:h-[38rem] "
       onClick={handleSlide}
     >
       <div className=" flex items-center">
@@ -50,17 +50,17 @@ const Carousel = () => {
             <ChevronLeft className="w-20 h-16" />
           </button>
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col sm:flex-row w-[30rem] sm:w-[100%] ">
           {items.map((item, index) => (
-            <div className="flex flex-row items-center ">
-              <div>
-                <h1 className="flex flex-wrap text-6xl font-bold text-white p-3 ">
+            <div className="flex flex-col sm:flex-row items-center ">
+              <div className="flex flex-col items-center sm:items-start">
+                <h1 className="flex flex-wrap text-center sm:text-left text-6xl font-bold text-white pt-20 sm:pt-0 p-3 ">
                   {item.caption}
                 </h1>
                 <p className="flex flex-wrap text-white text-sm p-3">
                   {item.description}
                 </p>
-                <div className="flex flex-row items-center">
+                <div className="flex flex-col sm:flex-row items-center">
                   <h3 className="text-2xl font-bold text-white mx-3">
                     {item.price}
                   </h3>
@@ -69,7 +69,7 @@ const Carousel = () => {
                   </button>
                 </div>
               </div>
-              <div className="px-32 ">
+              <div className="w-[36rem] h-[42.rem] sm:px-32 pt-20 sm:pt-0">
                 <img src={item.image} alt="coursel1" />
               </div>
             </div>

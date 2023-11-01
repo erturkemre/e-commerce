@@ -52,7 +52,7 @@ const ProductCard = () => {
             Problems trying to resolve the conflict between.
           </p>
         </div>
-        <div className="flex flex-row justify-between flex-wrap overflow-hidden">
+        <div className="flex flex-col sm:flex-row justify-between flex-wrap overflow-hidden">
           {products.map((product, index) => (
             <Card
               className="mb-10 mx-[1%]"

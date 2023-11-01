@@ -14,7 +14,7 @@ const Footer = () => {
   };
   return (
     <div className="bg-footer-bg">
-      <div className="flex justify-between p-5 px-40">
+      <div className="flex flex-col sm:flex-row sm:justify-between p-5 sm:px-40">
         <NavLink to="/" className="text-2xl font-bold text-black">
           Bandage
         </NavLink>
@@ -30,7 +30,7 @@ const Footer = () => {
           </NavLink>
         </div>
       </div>
-      <div className="bg-white flex justify-evenly p-10">
+      <div className="bg-white sm:flex justify-evenly p-10">
         <div className="text-gray-500">
           <h4 className="font-bold text-black pb-4">Company Info</h4>
           <p>About Us</p>

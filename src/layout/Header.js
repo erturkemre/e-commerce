@@ -5,7 +5,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
   return (
-    <div className="flex justify-between items-center p-4 bg-header-bg text-white">
+    <div className="hidden sm:flex  justify-between items-center p-4 bg-header-bg text-white">
       <div className="flex px-4 ">
         <p>
           <Phone className="inline-block" /> (541)863-7254

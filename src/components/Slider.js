@@ -46,7 +46,7 @@ const Slider = () => {
       >
         <ChevronLeft className="w-20 h-16" />
       </button>
-      <div className="carousel-content flex  ">
+      <div className="carousel-content flex w-[100%] ">
         {items.map((item, index) => (
           <div
             key={index}
@@ -55,7 +55,7 @@ const Slider = () => {
             } relative h-screen w-screen bg-cover bg-center`}
             style={{ backgroundImage: `url(${item.image})`, width: "100%" }}
           >
-            <div className="flex flex-col flex-wrap items-start py-80 px-40 text-white">
+            <div className="flex flex-col flex-wrap items-start py-40 sm:py-80 px-20 sm:px-40 text-white">
               <h1 className="text-6xl font-bold">{item.caption}</h1>
               <h4 className="text-xl">{item.description}</h4>
               <NavLink
@@ -69,7 +69,7 @@ const Slider = () => {
         ))}
       </div>
       <button
-        className="absolute z-20 top-2/3 right-2 transform -translate-y-1/2 text-white"
+        className="absolute z-20 top-2/3 left-[35rem] sm:left-[85rem] transform -translate-y-1/2 text-white"
         onClick={nextSlide}
       >
         <ChevronRight className="w-20 h-16"/>

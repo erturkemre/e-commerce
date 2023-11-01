@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 const Main = () => {
   return (
-    <div className="main-layout">
+    <div className="flex flex-col w-[100vh] sm:w-[100%]">
       <Header />
       <SideBar />
       <div className="page-body">
