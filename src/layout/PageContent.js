@@ -25,7 +25,7 @@ const PageContent = () => {
         <Route path="/team" exact>
           <TeamPage />
         </Route>
-        <Route path="/shop/:productId" exact>
+        <Route path="/shop/:id" exact>
           <ProductPage />
         </Route>
         <Route path="/contact" exact>
@@ -33,6 +33,9 @@ const PageContent = () => {
         </Route>
         <Route path="/pricing" exact>
           <PricingPage />
+        </Route>
+        <Route path="/login" exact>
+          
         </Route>
       </Switch>
     </>
