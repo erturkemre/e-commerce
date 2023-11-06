@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosWithAuth = () => {
+export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
   return axios.create({
@@ -8,9 +8,9 @@ const axiosWithAuth = () => {
     headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
 };
-export default axiosWithAuth;
+
 export let API;
-const renewAPI = (token) => {
+export const renewAPI = (token) => {
   token && localStorage.setItem("token", token);
 
   API = axiosWithAuth();

@@ -5,13 +5,13 @@ import { API } from "../api/api";
 import { NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Spinner } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRolesActionCreator } from "../store/actions/globalAction";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isValid },
     watch,
   } = useForm({
@@ -20,34 +20,83 @@ const SignUp = () => {
       email: "",
       password: "",
       confirm: "",
-      role_id: "customer",
+      role_id: "",
       store: { name: "", phone: "", tax_no: "", bank_account: "" },
     },
     mode: "all",
   });
   const history = useHistory();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const dispatch = useDispatch();
-  const roles = useSelector((store) => store.global.roles);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchRolesActionCreator());
+    try {
+      API.get(`roles`).then((res) => {
+        setRoles(res.data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }, [roles.length]);
 
-  const formSubmit = (formdata) => {
+  const formSubmit = (formData) => {
+    let postData = {};
+    if (formData.role_id !== "2") {
+      postData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role_id: formData.role_id,
+      };
+    } else if (formData.role_id === "2") {
+      postData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role_id: formData.role_id,
+        store: {
+          name: formData.store.name,
+          tax_no: formData.store.tax_no,
+          bank_account: formData.store.bank_account,
+        },
+      };
+    }
     try {
-      setIsSubmitting(true);
-      API.post("signup", formdata);
-      toast.success(
-        "You need to click link in email to activate your account!"
-      );
-      history.push("/login", toast.message("Routing to login page"));
+      console.log(!!isValid);
+      console.log(formData);
+      console.log(postData);
+
+      API.post("signup", postData).then((res) => {
+        toast.success(
+          "You need to click link in email to activate your account!",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
+        setTimeout(() => {
+          history.push("/login");
+        }, 5000);
+      });
     } catch (err) {
-      toast.error(err.response.data.message);
-    } finally {
-      setIsSubmitting(false);
+      toast.error("Something went wrong!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
+
   return (
     <div className="flex flex-col items-center gap-10 py-10">
       <div className="flex flex-col items-center gap-4">
@@ -56,7 +105,7 @@ const SignUp = () => {
           Enter your name , email and password to register.
         </p>
       </div>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(formSubmit)}>
+      <form onSubmit={handleSubmit(formSubmit)} className="flex flex-col">
         <div className="flex flex-col items-start w-[22rem] h-24 ">
           <label className="font-bold text-md text-[#252B42] ">Your Name</label>
           <input
@@ -122,11 +171,11 @@ const SignUp = () => {
             type="password"
             placeholder="Confirm Password"
             {...register("confirm", {
-              required: "Password confirmation is required",
-              validate: (value) =>
-                value === watch("password")
-                  ? "Password matched"
-                  : "Passwords do not match",
+              validate: (value) => {
+                if (value !== watch("password")) {
+                  return "Password does not match";
+                }
+              },
             })}
           />
           {errors.confirm && <p> {errors.confirm?.message}</p>}
@@ -140,17 +189,21 @@ const SignUp = () => {
             {...register("role_id", {
               required: "Role is required",
             })}
+            onChange={(e) => {
+              const selectedRoleId = e.target.value;
+              setValue("role_id", selectedRoleId);
+            }}
           >
             {roles?.map((role) => (
-              <option key={role.id} value={role.id}>
-                {role.name}
+              <option key={role.id} value={role.id} name={role.code}>
+                {role.code}
               </option>
             ))}
           </select>
 
           {errors.role_id && <p>{errors.role_id?.message}</p>}
 
-          {watch("role_id") === "store" && (
+          {watch("role_id") === "2" && (
             <div className="flex flex-col gap-3 py-3">
               <div className="flex flex-col items-start w-[22rem] h-24">
                 <label className="font-bold text-md text-[#252B42]">
@@ -236,14 +289,14 @@ const SignUp = () => {
             </div>
           )}
         </div>
-        <div className="flex w-[22rem] h-20">
+        <div className="flex w-[22rem] h-20 py-5">
           <button
-            className="font-bold text-md bg-[#252B42] text-white rounded-md w-full h-12"
+            className="font-bold text-md bg-[#252B42] text-white rounded-md w-full h-12 "
             type="submit"
-            disabled={!isValid || isSubmitting}
+            disabled={!isValid}
           >
-            {isSubmitting ? (
-              <div className="spinner">
+            {isValid ? (
+              <div className="spinner flex justify-center">
                 <Spinner />
               </div>
             ) : (
