@@ -8,6 +8,8 @@ import TeamPage from "../pages/TeamPage";
 import ProductPage from "../pages/ProductPage";
 import ContactPage from "../pages/ContactPage";
 import PricingPage from "../pages/PricingPage";
+import Login from "../components/Login";
+import SignUp from "../components/SignUp";
 
 const PageContent = () => {
   return (
@@ -35,7 +37,10 @@ const PageContent = () => {
           <PricingPage />
         </Route>
         <Route path="/login" exact>
-          
+          <Login />
+        </Route>
+        <Route path="/signup" exact>
+          <SignUp />
         </Route>
       </Switch>
     </>
