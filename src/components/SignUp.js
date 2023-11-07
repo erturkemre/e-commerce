@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { API } from "../api/api";
 import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { Spinner } from "@material-tailwind/react";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,6 +27,7 @@ const SignUp = () => {
   });
   const history = useHistory();
   const [roles, setRoles] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     try {
@@ -36,7 +37,7 @@ const SignUp = () => {
     } catch (err) {
       console.log(err);
     }
-  }, [roles.length]);
+  }, []);
 
   const formSubmit = (formData) => {
     let postData = {};
@@ -60,15 +61,13 @@ const SignUp = () => {
         },
       };
     }
-    try {
-      console.log(!!isValid);
-      console.log(formData);
-      console.log(postData);
-
-      API.post("signup", postData).then((res) => {
-        toast.success(
-          "You need to click link in email to activate your account!",
-          {
+    
+    API.post("signup", postData)
+      .then((response) => {
+        if (response.status === 201) {
+          setIsSubmitting(true);
+          console.log("Kaydınızı tamamlamak için e-postanızı kontrol edin.");
+          toast.success("Kaydınızı tamamlamak için e-postanızı kontrol edin.", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -77,24 +76,31 @@ const SignUp = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
-          }
-        );
-        setTimeout(() => {
-          history.push("/login");
-        }, 5000);
+          });
+
+          setTimeout(() => {
+            history.push("/login");
+          }, 5000);
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 500) {
+          setIsSubmitting(false);
+          console.error("Kayıt sırasında bir hata oluştu:", error);
+          toast.error("Kayıt sırasında bir hata oluştu.", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          
+        }
       });
-    } catch (err) {
-      toast.error("Something went wrong!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
+      
   };
 
   return (
@@ -293,9 +299,9 @@ const SignUp = () => {
           <button
             className="font-bold text-md bg-[#252B42] text-white rounded-md w-full h-12 "
             type="submit"
-            disabled={!isValid}
+            disabled={!isValid || isSubmitting}
           >
-            {isValid ? (
+            {isSubmitting ? (
               <div className="spinner flex justify-center">
                 <Spinner />
               </div>
@@ -303,6 +309,7 @@ const SignUp = () => {
               "Sign Up"
             )}
           </button>
+          <ToastContainer />
         </div>
       </form>
       <div>
