@@ -6,18 +6,18 @@ export const SET_LANGUAGE = "SET_LANGUAGE";
 export const setRoles = (roles) => {
   return {
     type: SET_ROLES,
-    pyload: roles,
+    payload: roles,
   };
 };
 
 export const setCategories = (categories) => {
-  return { type: SET_CATEGORIES, pyload: categories };
+  return { type: SET_CATEGORIES, payload: categories };
 };
 
 export const setTheme = (theme) => {
-  return { type: SET_THEME, pyload: theme };
+  return { type: SET_THEME, payload: theme };
 };
 
 export const setLanguage = (language) => {
-  return { type: SET_LANGUAGE, pyload: language };
+  return { type: SET_LANGUAGE, payload: language };
 };

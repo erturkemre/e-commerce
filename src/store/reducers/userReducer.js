@@ -14,9 +14,9 @@ const userReducer = (state = user, action) => {
       return {
         ...state,
         user: {
-          name: action.pyload.name,
-          email: action.pyload.email,
-          role_id: action.pyload.role_id,
+          name: action.payload.name,
+          email: action.payload.email,
+          role_id: action.payload.role_id,
         },
       };
     default:

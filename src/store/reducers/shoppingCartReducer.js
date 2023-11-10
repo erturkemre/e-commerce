@@ -10,17 +10,18 @@ const initialState = {
   adress: {},
 };
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART_LIST:
-      return { ...state, cart: action.pyload };
+      return { ...state, cart: action.payload };
     case SET_PAYMENT:
-      return { ...state, payment: action.pyload };
+      return { ...state, payment: action.payload };
     case SET_ADDRESS:
-      return { ...state, adress: action.pyload };
+      return { ...state, adress: action.payload };
     default:
       return state;
   }
 };
 
+export default reducer;
 
