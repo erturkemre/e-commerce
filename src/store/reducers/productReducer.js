@@ -6,7 +6,7 @@ import {
   CHANGE_FETCH_STATE,
 } from "../actions/productAction";
 
-export const FETCH_STATE = {
+export const FETCH_STATES = {
   notFetched: "NOT_FETCHED",
   fetching: "FETCHING",
   fetched: "FETCHED",
@@ -18,7 +18,7 @@ const initialState = {
   totalProductCount: 0,
   pageCount: 0,
   activePage: 0,
-  fetchState: FETCH_STATE.notFetched,
+  fetchState: FETCH_STATES.notFetched,
 };
 
 const reducer = (state = initialState, action) => {

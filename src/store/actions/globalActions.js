@@ -1,13 +1,18 @@
+import {API} from "../../api/api";
+
 export const SET_ROLES = "SET_ROLES";
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_THEME = "SET_THEME";
 export const SET_LANGUAGE = "SET_LANGUAGE";
 
-export const setRoles = (roles) => {
-  return {
-    type: SET_ROLES,
-    payload: roles,
-  };
+export const rolesActionCreator = () => (dispatch) => {  // thunk action creator for roles
+  API.get("roles")
+    .then((res) => {
+      dispatch({ type: SET_ROLES, payload: res.data.reverse() });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 export const setCategories = (categories) => {

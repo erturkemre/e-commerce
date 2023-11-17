@@ -6,6 +6,8 @@ import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Spinner } from "@material-tailwind/react";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { rolesActionCreator } from "../store/actions/globalActions";
 
 const SignUp = () => {
   const {
@@ -26,17 +28,12 @@ const SignUp = () => {
     mode: "all",
   });
   const history = useHistory();
-  const [roles, setRoles] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const roles = useSelector((store) => store.globalReducer.roles);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    try {
-      API.get(`roles`).then((res) => {
-        setRoles(res.data);
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    roles.length === 0 && dispatch(rolesActionCreator());
   }, []);
 
   const formSubmit = (formData) => {
@@ -61,7 +58,7 @@ const SignUp = () => {
         },
       };
     }
-    
+
     API.post("signup", postData)
       .then((response) => {
         if (response.status === 201) {
@@ -97,10 +94,8 @@ const SignUp = () => {
             progress: undefined,
             theme: "light",
           });
-          
         }
       });
-      
   };
 
   return (

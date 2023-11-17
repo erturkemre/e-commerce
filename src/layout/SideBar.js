@@ -2,9 +2,18 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { User2, Search, ShoppingCart, Heart, ChevronDown } from "lucide-react";
 import "tailwindcss/tailwind.css";
+import { useSelector } from "react-redux";
+import { FETCH_STATES } from "../store/reducers/productReducer";
+import { MD5 } from "crypto-js";
 
 const SideBar = () => {
-  
+  const user = useSelector((store) => store.userReducer.user);
+  const userNotFetched = useSelector(
+    (store) => store.userReducer.fetchState === FETCH_STATES.notFetched
+  );
+  const userFetched = useSelector(
+    (store) => store.userReducer.fetchState === FETCH_STATES.fetched
+  );
   return (
     <div className="flex justify-between sm:items-center p-4 pl-8 bg-white text-gray-500 ">
       <div>
@@ -41,14 +50,27 @@ const SideBar = () => {
         <NavLink to="/team" className=" hover:text-black font-semibold">
           Team
         </NavLink>
-        <NavLink to={"/contact" } className=" hover:text-black font-semibold">
+        <NavLink to={"/contact"} className=" hover:text-black font-semibold">
           Contact
         </NavLink>
       </div>
       <div className="flex flex-row space-x-4 ">
-        <NavLink to="/login" className="hidden sm:flex text-[#252B42]  sm:btn sm:m-1 sm:text-blue-500">
-          <User2 className="inline-block mr-1" /> Login/Register
-        </NavLink>
+        {userNotFetched && (
+          <NavLink
+            to="/login"
+            className="hidden sm:flex text-[#252B42]  sm:btn sm:m-1 sm:text-blue-500"
+          >
+            <User2 className="inline-block mr-1" /> Login/Register
+          </NavLink>
+        )}
+        {userFetched && (
+          <div className="flex flex-row py-2 items-start justify-center sm:items-center">
+            <img
+              src={`https://www.gravatar.com/avatar/${MD5(user.email)}?s=24`}
+              alt="avatar"
+            />
+          </div>
+        )}
         <NavLink to="" className="btn m-1 text-[#252B42] sm:text-blue-500">
           <Search className="inline-block" />
         </NavLink>
@@ -58,7 +80,6 @@ const SideBar = () => {
         <NavLink to="/fav" className="btn m-1 text-[#252B42] sm:text-blue-500">
           <Heart className="inline-block" />
         </NavLink>
-
       </div>
     </div>
   );

@@ -18,6 +18,9 @@ const PageContent = () => {
         <Route path="/" exact>
           <MainPage />
         </Route>
+        <Route path="/home" exact>
+          <MainPage />
+        </Route>
         <Route path="/shop" exact>
           <ProductListPage />
         </Route>

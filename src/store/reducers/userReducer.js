@@ -1,4 +1,5 @@
-import { SET_USER } from "../actions/userActions";
+import { SET_USER, SET_USER_FETCH_STATES } from "../actions/userActions";
+import { FETCH_STATES } from "./productReducer";
 
 const user = {
   user: {
@@ -6,6 +7,7 @@ const user = {
     email: "",
     role_id: "",
   },
+  fetchState: FETCH_STATES.notFetched,
 };
 
 const userReducer = (state = user, action) => {
@@ -13,12 +15,14 @@ const userReducer = (state = user, action) => {
     case SET_USER:
       return {
         ...state,
-        user: {
-          name: action.payload.name,
-          email: action.payload.email,
-          role_id: action.payload.role_id,
-        },
+        user:{...action.payload},
+        fetchState: FETCH_STATES.fetched,
       };
+    case SET_USER_FETCH_STATES:
+      return {
+        ...state,
+        fetchState: action.payload,
+      };  
     default:
       return state;
   }
