@@ -64,11 +64,12 @@ const SideBar = () => {
           </NavLink>
         )}
         {userFetched && (
-          <div className="flex flex-row py-2 items-start justify-center sm:items-center">
+          <div className="flex flex-row py-2 items-start justify-center sm:items-center gap-2">
             <img
               src={`https://www.gravatar.com/avatar/${MD5(user.email)}?s=24`}
               alt="avatar"
             />
+            <div className=" hover:text-black font-semibold">{user.name}</div>
           </div>
         )}
         <NavLink to="" className="btn m-1 text-[#252B42] sm:text-blue-500">

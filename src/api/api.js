@@ -5,7 +5,7 @@ export const axiosWithAuth = () => {
 
   return axios.create({
     baseURL: "https://workintech-fe-ecommerce.onrender.com/",
-    headers: token ? { Authorization: `Bearer ${token}` } : {},
+    headers: token ? { Authorization: token  } : {},
   });
 };
 
