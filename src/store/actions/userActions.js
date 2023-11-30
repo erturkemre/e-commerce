@@ -18,9 +18,9 @@ export const userActionsCreator = (data) => (dispatch, getState) => {
           payload: FETCH_STATES.fetched,
         });
         renewAPI(res.data.token);
-        toast.success(res.data.message);
+        toast.success("Giriş başarılı.");
       });
-      toast.success("Giriş başarılı.");
+      
     }
   } catch (error) {
     if (error.response && error.response.status === 401) {

@@ -15,8 +15,15 @@ export const rolesActionCreator = () => (dispatch) => {  // thunk action creator
     });
 };
 
-export const setCategories = (categories) => {
-  return { type: SET_CATEGORIES, payload: categories };
+export const fetchCategoriesAction = () => (dispatch) =>{
+  API.get("categories")
+    .then((res) => {
+      console.log(res.data);
+      dispatch({ type: SET_CATEGORIES, payload: res.data.reverse() });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 export const setTheme = (theme) => {

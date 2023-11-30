@@ -1,12 +1,16 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { User2, Search, ShoppingCart, Heart, ChevronDown } from "lucide-react";
 import "tailwindcss/tailwind.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { MD5 } from "crypto-js";
+import { useEffect } from "react";
+import { fetchCategoriesAction } from "../store/actions/globalActions";
 
 const SideBar = () => {
+  const [toggle, setToggle] = useState(false);
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer.user);
   const userNotFetched = useSelector(
     (store) => store.userReducer.fetchState === FETCH_STATES.notFetched
@@ -14,6 +18,12 @@ const SideBar = () => {
   const userFetched = useSelector(
     (store) => store.userReducer.fetchState === FETCH_STATES.fetched
   );
+  const categories = useSelector((store) => store.globalReducer.categories);
+
+  useEffect(() => {
+    categories.length === 0 && dispatch(fetchCategoriesAction());
+  }, []);
+
   return (
     <div className="flex justify-between sm:items-center p-4 pl-8 bg-white text-gray-500 ">
       <div>
@@ -26,23 +36,29 @@ const SideBar = () => {
           Home
         </NavLink>
         <NavLink
-          to="/shop"
-          className="dropdown dropdown-hover hover:text-black font-semibold "
+          to="/shopping"
+          onMouseEnter={() => setToggle(true)}
+          onMouseLeave={() => setToggle(false)}
         >
-          <label tabIndex={0} className="cursor-pointer">
-            Shop <ChevronDown className="inline-block" />
-          </label>
-          {/* <ul
+          <div
             tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-14"
+            role="button"
+            className="flex flex-row items-center justify-center hover:text-black font-semibold"
           >
-            <li>
-              <NavLink to="item1">Item1</NavLink>
-            </li>
-            <li>
-              <NavLink to="item1">Item2</NavLink>
-            </li>
-          </ul> */}
+            Shop
+            <ChevronDown />
+          </div>
+          {toggle && (
+            <ul className="absolute z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 bg-white rounded-md">
+              {categories.map((category) => (
+                <li className="hover:text-black font-semibold ">
+                  <Link to={`/shopping/${category.gender}/${category.title}`}>
+                    {category.code}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </NavLink>
         <NavLink to="/about" className=" hover:text-black font-semibold">
           About
