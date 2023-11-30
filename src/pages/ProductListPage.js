@@ -43,9 +43,9 @@ const ProductListPage = () => {
                   />
                   <div className="flex flex-col absolute items-center ">
                     <p className="text-white text-2xl font-bold">
-                      {topCategory.code}
+                      {topCategory.gender==='k'? "Kadın" : "Erkek"}
                     </p>
-                    <p className="text-white">{topCategory.rating}</p>
+                    <p className="text-white">{topCategory.title}</p>
                   </div>
                 </div>
               </div>

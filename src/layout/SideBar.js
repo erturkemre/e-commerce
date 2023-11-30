@@ -19,7 +19,8 @@ const SideBar = () => {
     (store) => store.userReducer.fetchState === FETCH_STATES.fetched
   );
   const categories = useSelector((store) => store.globalReducer.categories);
-
+  
+ 
   useEffect(() => {
     categories.length === 0 && dispatch(fetchCategoriesAction());
   }, []);
@@ -52,8 +53,8 @@ const SideBar = () => {
             <ul className="absolute z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 bg-white rounded-md">
               {categories.map((category) => (
                 <li className="hover:text-black font-semibold ">
-                  <Link to={`/shopping/${category.gender}/${category.title}`}>
-                    {category.code}
+                  <Link to={`/shopping/${category.gender==='k'? "kadin" : "erkek"}/${category.title.toLowerCase()}`}>
+                    {`${category.gender==='k'? "Kadın" : "Erkek"} ${category.title}`}
                   </Link>
                 </li>
               ))}
