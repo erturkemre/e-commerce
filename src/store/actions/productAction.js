@@ -1,3 +1,4 @@
+
 import { API } from "../../api/api";
 import { FETCH_STATES } from "../reducers/productReducer";
 
@@ -7,11 +8,15 @@ export const SET_PAGE_COUNT = "PAGE_COUNT";
 export const SET_ACTİVE_PAGE = "ACTİVE_PAGE";
 export const CHANGE_FETCH_STATE = "CHANGE_FETCH_STATE";
 
-export const fetchProductsAction = (category, filter,sort) => (dispatch) => {
+
+
+export const fetchProductsAction = (category, filter,sort,limit,offset) => (dispatch) => {
   const queryParams = {
     category: category || '',
     filter: filter || '',
-    sort: sort || ''
+    sort: sort || '',
+    limit: limit ||'',
+    offset: offset || '',
   };
   
   const query = new URLSearchParams(queryParams).toString();

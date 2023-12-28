@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActionsCreator } from "../store/actions/userActions";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useHistory } from "react-router-dom";
 
@@ -17,20 +17,16 @@ const Login = () => {
     mode: "all",
   });
   const dispatch = useDispatch();
-  const userFetched = useSelector(
-    (store) => store.userReducer.fetchState === FETCH_STATES.fetched
-  );
-  const history = useHistory();
+  // const userFetched = useSelector((store) => store.userReducer.fetchState);
+  // const history = useHistory();
 
   const formSubmit = (data) => {
     console.log(data);
     dispatch(userActionsCreator(data));
+
+   
+    
   };
-  if (userFetched) {
-    setTimeout(() => {
-      history.push("/");
-    }, 3000);
-  }
 
   return (
     <div className="flex flex-col items-center gap-10">

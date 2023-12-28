@@ -2,12 +2,16 @@ import { API, renewAPI } from "../../api/api";
 import { toast } from "react-toastify";
 import { FETCH_STATES } from "../reducers/productReducer";
 
+
+
+
 export const SET_USER = "SET_USER";
 export const SET_USER_FETCH_STATES = "SET_USER_FETCH_STATES";
 
 export const userActionsCreator = (data) => (dispatch, getState) => {
   try {
-    if (getState().userReducer.fetchState === FETCH_STATES.notFetched) {
+    console.log("userActionsCreator:", getState());
+    if ((getState().userReducer.fetchState === FETCH_STATES.notFetched)|| (getState().userReducer.fetchState === FETCH_STATES.fetchError)) {
       dispatch({ type: SET_USER_FETCH_STATES, payload: FETCH_STATES.fetching });
       API.post("login", data).then((res) => {
         console.log("SET_USER dispatch:", res.data);
@@ -19,6 +23,8 @@ export const userActionsCreator = (data) => (dispatch, getState) => {
         });
         renewAPI(res.data.token);
         toast.success("Giriş başarılı.");
+        
+        
       });
       
     }
@@ -30,9 +36,11 @@ export const userActionsCreator = (data) => (dispatch, getState) => {
     }
     dispatch({
       type: SET_USER_FETCH_STATES,
-      payload: FETCH_STATES.fetchError,
+      payload: FETCH_STATES.notFetched,
     });
+    
   }
+  
 };
 
 export const getUserVerify = () => (dispatch) => {

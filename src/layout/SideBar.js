@@ -13,14 +13,11 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.userReducer.user);
   const userNotFetched = useSelector(
-    (store) => store.userReducer.fetchState === FETCH_STATES.notFetched
+    (store) => store.userReducer.fetchState 
   );
-  const userFetched = useSelector(
-    (store) => store.userReducer.fetchState === FETCH_STATES.fetched
-  );
+
   const categories = useSelector((store) => store.globalReducer.categories);
-  
- 
+
   useEffect(() => {
     categories.length === 0 && dispatch(fetchCategoriesAction());
   }, []);
@@ -50,14 +47,34 @@ const SideBar = () => {
             <ChevronDown />
           </div>
           {toggle && (
-            <ul className="absolute z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 bg-white rounded-md">
+            <ul className="flex flex-row absolute z-[1] menu p-2 shadow bg-base-100 rounded-box gap-10 bg-white rounded-md">
+              <div>
               {categories.map((category) => (
                 <li className="hover:text-black font-semibold ">
-                  <Link to={`/shopping/${category.gender==='k'? "kadin" : "erkek"}/${category.title.toLowerCase()}`}>
-                    {`${category.gender==='k'? "Kadın" : "Erkek"} ${category.title}`}
+                  <Link
+                    to={`/shopping/${
+                      category.gender === "k" ? "kadin" : "erkek"
+                    }/${category.title.toLowerCase()}`}
+                  >
+                    {`${category.gender === "k" ? `Kadın ${category.title}` : ""} `}
                   </Link>
                 </li>
               ))}
+              </div>
+              <div>
+              {categories.map((category) => (
+                <li className="hover:text-black font-semibold ">
+                  <Link
+                    to={`/shopping/${
+                      category.gender === "k" ? "kadin" : "erkek"
+                    }/${category.title.toLowerCase()}`}
+                  >
+                    
+                    {`${category.gender === "e" ? `Erkek ${category.title}` : ""} `}
+                  </Link>
+                </li>
+              ))}
+              </div>
             </ul>
           )}
         </NavLink>
@@ -72,7 +89,7 @@ const SideBar = () => {
         </NavLink>
       </div>
       <div className="flex flex-row space-x-4 ">
-        {userNotFetched && (
+        {((userNotFetched===FETCH_STATES.notFetched)||(userNotFetched===FETCH_STATES.fetchError)) && (
           <NavLink
             to="/login"
             className="hidden sm:flex text-[#252B42]  sm:btn sm:m-1 sm:text-blue-500"
@@ -80,7 +97,7 @@ const SideBar = () => {
             <User2 className="inline-block mr-1" /> Login/Register
           </NavLink>
         )}
-        {userFetched && (
+        {userNotFetched===FETCH_STATES.fetched && (
           <div className="flex flex-row py-2 items-start justify-center sm:items-center gap-2">
             <img
               src={`https://www.gravatar.com/avatar/${MD5(user.email)}?s=24`}
