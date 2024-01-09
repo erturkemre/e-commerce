@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "tailwindcss/tailwind.css";
 import {
   Card,
@@ -16,7 +16,6 @@ import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
-
 
 const ProductListCard = () => {
   const [limit, setLimit] = useState(25);
@@ -54,20 +53,19 @@ const ProductListCard = () => {
     setOffset(0);
     dispatch(fetchProductsAction("", "", ""));
   };
-
-  const fetchMoreData = () => {
-    if(offset >= totalProductCount) {
+ 
+ const fetchMoreData = () => {
+    if (products.length >= totalProductCount) {
       setHasMore(false);
+      return;
     }
-    setOffset(offset + limit);
-    
-  };
+    setOffset(offset + 25);
+ };
+  
 
   useEffect(() => {
     products.length === 0 &&
-      dispatch(
-        fetchProductsAction(categoryId, filter, sortOption, "","")
-      );
+      dispatch(fetchProductsAction(categoryId, filter, sortOption, "", ""));
   }, []);
 
   useEffect(() => {
@@ -80,11 +78,10 @@ const ProductListCard = () => {
 
   useEffect(() => {
     console.log(categoryId);
-    
-      dispatch(
-        fetchProductsAction(categoryId, filter, sortOption, limit, offset)
-      );
 
+    dispatch(
+      fetchProductsAction(categoryId, filter, sortOption, limit, offset)
+    );
   }, [categoryId, filter, sortOption, limit, offset]);
 
   return (
@@ -189,7 +186,9 @@ const ProductListCard = () => {
                       width: "15rem",
                     }}
                   >
-                    <NavLink to={`/shop/${product.id}`}>
+                    <NavLink
+                      to={`/shopping/${product.category}/${product.id}/${product.name}`}
+                    >
                       <img
                         className="w-15"
                         alt={product.id}
@@ -216,7 +215,7 @@ const ProductListCard = () => {
               </div>
             </InfiniteScroll>
 
-            <div className="flex flex-row justify-center items-center rounded-lg p-2">
+            {/* <div className="flex flex-row justify-center items-center rounded-lg p-2">
               <button className="border rounded-lg bg-gray-400 text-white px-4 py-2 mx-1">
                 <Link to="/shopping">First</Link>
               </button>
@@ -233,7 +232,7 @@ const ProductListCard = () => {
               <button className="border rounded-lg bg-white text-[#23A6F0] px-4 py-2 mx-1">
                 <Link to="/shopping">Next</Link>
               </button>
-            </div>
+            </div> */}
           </div>
         )}
     </div>
