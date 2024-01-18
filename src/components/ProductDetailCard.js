@@ -8,14 +8,21 @@ import {
   StarHalf,
 } from "lucide-react";
 import { React, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { NavLink } from "reactstrap";
+import { setCartList } from "../store/actions/shoppingCartAction";
+import { get } from "react-hook-form";
+
 
 const ProductDetailCard = () => {
+  const dispatch = useDispatch();
   const products = useSelector((state) => state.productReducer.productList);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
+
+
+ 
 
   const getProduct = (productId) => {
     const savedProduct = localStorage.getItem("productData");
@@ -33,6 +40,13 @@ const ProductDetailCard = () => {
 
     return products?.find((p) => p.id === productId) || null;
   };
+
+
+  const addToCart = () => { 
+    console.log(typeof(product));
+    dispatch(setCartList(product));
+    
+  }
 
   useEffect(() => {
     const productId = parseInt(id);
@@ -100,10 +114,11 @@ const ProductDetailCard = () => {
                 {product?.description}
               </p>
               <div className="bg-[#BDBDBD] w-[100%] h-1 "></div>
-              <div className="flex gap-4 py-16">
+              <div className="flex gap-3 py-16">
                 <button className="bg-[#23A6F0] text-white rounded-xl px-4 py-2">
                   Select Option
                 </button>
+                <button className="bg-[#23A6F0] text-white rounded-xl px-4 py-2 " onClick={addToCart}>Add To Card</button>
                 <div className="flex items-center justify-center w-[2rem] h-[2rem] text-center rounded-full bg-white">
                   <Heart className="text-[#252B42]" />
                 </div>

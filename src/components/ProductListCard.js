@@ -7,6 +7,7 @@ import {
   CardText,
   CardTitle,
   Spinner,
+  Toast,
 } from "reactstrap";
 import { LayoutGridIcon, List } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
@@ -16,6 +17,7 @@ import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const ProductListCard = () => {
   const [limit, setLimit] = useState(25);
@@ -83,6 +85,8 @@ const ProductListCard = () => {
       fetchProductsAction(categoryId, filter, sortOption, limit, offset)
     );
   }, [categoryId, filter, sortOption, limit, offset]);
+  
+  
 
   return (
     <div className="flex flex-col justify-evenly py-5 bg-white">
@@ -210,6 +214,8 @@ const ProductListCard = () => {
                         <CardText className="text-[#23856D] font-bold ">{`${product.price}₺`}</CardText>
                       </CardBody>
                     </NavLink>
+                    
+                    <ToastContainer />
                   </Card>
                 ))}
               </div>

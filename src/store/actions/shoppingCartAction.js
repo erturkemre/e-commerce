@@ -1,11 +1,34 @@
-export const SET_CART_LIST = "SET_CART_LIST";
+export const ADD_CART_LIST = "ADD_CART_LIST";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const INCREASE_PRODUCT = "INCREASE_PRODUCT";
+export const DECREASE_PRODUCT = "DECREASE_PRODUCT";
 export const SET_PAYMENT = "SET_PAYMENT";
 export const SET_ADDRESS = "SET_ADDRESS";
 
-export const setCartList = (cartList) => {
+
+
+export const setCartList = (product) => {
     return {
-        type: SET_CART_LIST,
-        payload: cartList,
+      type: 'ADD_CART_LIST',
+      payload: product,
+    };
+  };
+export const increaseProduct = (product) => {
+    return {
+      type: 'INCREASE_PRODUCT',
+      payload: product,
+    };
+  };
+export const decreaseProduct = (product) => {
+    return {
+      type: 'DECREASE_PRODUCT',
+      payload: product,
+    };
+  };
+export const removeProduct = (product) => {
+    return {
+      type: 'REMOVE_PRODUCT',
+      payload: product,
     };
 }
 
