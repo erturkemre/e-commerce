@@ -31,7 +31,7 @@ const PageContent = () => {
         <Route path="/team" exact>
           <TeamPage />
         </Route>
-        <Route path="/shopping/:category/:id/:productName" exact>
+        <Route path="/shopping/:id/:productName" exact>
           <ProductPage />
         </Route>
         <Route path="/shopping/:gender/:category?" exact>

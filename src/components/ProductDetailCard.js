@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { NavLink } from "reactstrap";
 import { setCartList } from "../store/actions/shoppingCartAction";
-import { get } from "react-hook-form";
+
 
 
 const ProductDetailCard = () => {

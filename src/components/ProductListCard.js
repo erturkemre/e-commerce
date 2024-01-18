@@ -55,15 +55,14 @@ const ProductListCard = () => {
     setOffset(0);
     dispatch(fetchProductsAction("", "", ""));
   };
- 
- const fetchMoreData = () => {
+
+  const fetchMoreData = () => {
     if (products.length >= totalProductCount) {
       setHasMore(false);
       return;
     }
     setOffset(offset + 25);
- };
-  
+  };
 
   useEffect(() => {
     products.length === 0 &&
@@ -85,8 +84,6 @@ const ProductListCard = () => {
       fetchProductsAction(categoryId, filter, sortOption, limit, offset)
     );
   }, [categoryId, filter, sortOption, limit, offset]);
-  
-  
 
   return (
     <div className="flex flex-col justify-evenly py-5 bg-white">
@@ -168,60 +165,59 @@ const ProductListCard = () => {
       {fetchState === FETCH_STATES.fetching && ( //spinner component
         <Spinner color="primary" className="mx-auto" />
       )}
-      {fetchState === FETCH_STATES.fetched &&
-        hasMore && ( //productCard component
-          <div>
-            <InfiniteScroll
-              dataLength={products.length}
-              next={fetchMoreData}
-              hasMore={hasMore}
-              loader={<h4>Loading...</h4>}
-              endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>You haven seen all.</b>
-                </p>
-              }
-            >
-              <div className="flex flex-row flex-wrap mx-48 py-5">
-                {products?.map((product, index) => (
-                  <Card
-                    className="mb-10 mx-[1%] hover:shadow-xl hover:scale-110"
-                    style={{
-                      width: "15rem",
-                    }}
+      {fetchState === FETCH_STATES.fetched && hasMore && (
+        <div>
+          <InfiniteScroll
+            dataLength={products.length}
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}
+            endMessage={
+              <p style={{ textAlign: "center" }}>
+                <b>You haven seen all.</b>
+              </p>
+            }
+          >
+            <div className="flex flex-row flex-wrap mx-48 py-5">
+              {products?.map((product, index) => (
+                <Card
+                  className="mb-10 mx-[1%] hover:shadow-xl hover:scale-110"
+                  style={{
+                    width: "15rem",
+                  }}
+                >
+                  <NavLink
+                    to={`/shopping/${product.id}/${product.name}`}
                   >
-                    <NavLink
-                      to={`/shopping/${product.category}/${product.id}/${product.name}`}
-                    >
-                      <img
-                        className="w-15"
-                        alt={product.id}
-                        src={product.images[0].url}
-                      />
-                      <CardBody className="flex flex-col text-center">
-                        <CardTitle
-                          tag="h5"
-                          className="text-lg font-bold text-[#252B42] "
-                        >
-                          {product.name}
-                        </CardTitle>
-                        <CardSubtitle
-                          className="mb-2 text-sm text-[#737373]"
-                          tag="h6"
-                        >
-                          {product.description}
-                        </CardSubtitle>
-                        <CardText className="text-[#23856D] font-bold ">{`${product.price}₺`}</CardText>
-                      </CardBody>
-                    </NavLink>
-                    
-                    <ToastContainer />
-                  </Card>
-                ))}
-              </div>
-            </InfiniteScroll>
+                    <img
+                      className="w-15"
+                      alt={product.id}
+                      src={product.images[0].url}
+                    />
+                    <CardBody className="flex flex-col text-center">
+                      <CardTitle
+                        tag="h5"
+                        className="text-lg font-bold text-[#252B42] "
+                      >
+                        {product.name}
+                      </CardTitle>
+                      <CardSubtitle
+                        className="mb-2 text-sm text-[#737373]"
+                        tag="h6"
+                      >
+                        {product.description}
+                      </CardSubtitle>
+                      <CardText className="text-[#23856D] font-bold ">{`${product.price}₺`}</CardText>
+                    </CardBody>
+                  </NavLink>
 
-            {/* <div className="flex flex-row justify-center items-center rounded-lg p-2">
+                  <ToastContainer />
+                </Card>
+              ))}
+            </div>
+          </InfiniteScroll>
+
+          {/* <div className="flex flex-row justify-center items-center rounded-lg p-2">
               <button className="border rounded-lg bg-gray-400 text-white px-4 py-2 mx-1">
                 <Link to="/shopping">First</Link>
               </button>
@@ -239,8 +235,8 @@ const ProductListCard = () => {
                 <Link to="/shopping">Next</Link>
               </button>
             </div> */}
-          </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };
