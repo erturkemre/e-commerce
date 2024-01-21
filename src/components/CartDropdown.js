@@ -2,6 +2,7 @@ import { Minus, Plus, X } from "lucide-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseProduct,decreaseProduct,removeProduct } from "../store/actions/shoppingCartAction";
+import { Link } from "react-router-dom";
 
 const CartDropdown = ({ toggle2, setToggle2 }) => {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const CartDropdown = ({ toggle2, setToggle2 }) => {
             {productInCart.map((product) => (
               <div
                 key={product.id}
-                className="flex flex-row items-center justify-evenly gap-5 p-2 border-b-2 border-[#E0E0E0]"
+                className="flex flex-row items-center justify-evenly gap-6 px-6 py-3 border-b-2 border-[#E0E0E0]"
               >
                 <div className="w-20 overflow-hidden rounded-lg">
                   <img
@@ -49,7 +50,7 @@ const CartDropdown = ({ toggle2, setToggle2 }) => {
                     alt={product.product.name}
                   />
                 </div>
-                <div className="flex flex-col w-full h-full items-start flex-wrap">
+                <div className="flex flex-col w-full h-full gap-3 items-start flex-wrap">
                   <h3 className="font-bold">{product.product.name}</h3>
 
                   <div className="flex flex-row  gap-2">
@@ -81,15 +82,17 @@ const CartDropdown = ({ toggle2, setToggle2 }) => {
 
                   <p className="font-bold">{product.product.price}₺</p>
                 </div>
+
               </div>
+              
             ))}
-            <div className="flex flex-row h-12 items-center justify-center gap-4">
-              <button className="bg-[#FAFAFA] text-[#23A6F0] w-32 h-8 text-sm rounded-lg px-2 py-1">
+            <div className="flex flex-row h-12 items-center px-8 py-7 justify-center gap-4">
+              <Link to="/cart" className="bg-[#FAFAFA] text-[#23A6F0] w-32 h-8 text-sm rounded-lg px-2 py-1">
                 Sepete Git
-              </button>
-              <button className="bg-[#23A6F0] text-white w-32 h-8 text-sm rounded-lg px-2 py-1">
+              </Link>
+              <Link to="/cart" className="bg-[#23A6F0] text-white w-32 h-8 text-sm rounded-lg px-2 py-1">
                 Siparişi Tamamla
-              </button>
+              </Link>
             </div>
           </div>
         )}
