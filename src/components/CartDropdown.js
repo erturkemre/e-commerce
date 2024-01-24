@@ -90,7 +90,7 @@ const CartDropdown = ({ toggle2, setToggle2 }) => {
               <Link to="/cart" className="bg-[#FAFAFA] text-[#23A6F0] w-32 h-8 text-sm rounded-lg px-2 py-1">
                 Sepete Git
               </Link>
-              <Link to="/cart" className="bg-[#23A6F0] text-white w-32 h-8 text-sm rounded-lg px-2 py-1">
+              <Link to="/order" className="bg-[#23A6F0] text-white w-32 h-8 text-sm rounded-lg px-2 py-1">
                 Siparişi Tamamla
               </Link>
             </div>

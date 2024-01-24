@@ -11,6 +11,7 @@ import PricingPage from "../pages/PricingPage";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import Cart from "../pages/Cart";
+import OrderPage from "../pages/OrderPage";
 
 const PageContent = () => {
   return (
@@ -51,6 +52,9 @@ const PageContent = () => {
         </Route>
         <Route path="/cart" exact>
           <Cart/>
+        </Route>
+        <Route path="/order" exact>
+          <OrderPage />
         </Route>
       </Switch>
     </>
