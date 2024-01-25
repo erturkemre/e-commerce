@@ -55,7 +55,7 @@ const SideBar = () => {
                 {categories.map((category) => (
                   <li className="hover:text-black font-semibold ">
                     <Link
-                      to={`/shopping/${
+                      to={`/shoping/${
                         category.gender === "k" ? "kadin" : "erkek"
                       }/${category.title.toLowerCase()}`}
                     >
@@ -70,7 +70,7 @@ const SideBar = () => {
                 {categories.map((category) => (
                   <li className="hover:text-black font-semibold ">
                     <Link
-                      to={`/shopping/${
+                      to={`/shoping/${
                         category.gender === "k" ? "kadin" : "erkek"
                       }/${category.title.toLowerCase()}`}
                     >

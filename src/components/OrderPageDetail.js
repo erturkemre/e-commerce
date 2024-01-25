@@ -1,6 +1,7 @@
 import { AlertCircle } from "lucide-react";
 import React from "react";
 import { useSelector } from "react-redux";
+import OrderAdressDetails from "./OrderAdressDetails";
 
 const OrderPageDetail = () => {
   const productInCart = useSelector(
@@ -40,8 +41,15 @@ const OrderPageDetail = () => {
             adresinizi seçin.
           </h3>
         </div>
-        <div>
-            TODO
+        <div className="flex flex-col border-2 rounded-lg px-10 gap-5 py-5">
+          <div className="flex flex-row justify-between items-center">
+            <h2 className="text-xl font-semibold  ">Teslimat Adresi</h2>
+            <div className="flex flex-row items-center gap-2">
+              <input type="checkbox" className="w-5 h-5" checked/>
+              <label>Faturamı Aynı Adrese Gönder</label>
+            </div>
+          </div>
+          <OrderAdressDetails />
         </div>
       </div>
       <div className="flex flex-col gap-5 basis-1/4 pe-20 py-3 gap">

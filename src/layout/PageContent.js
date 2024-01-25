@@ -35,7 +35,7 @@ const PageContent = () => {
         <Route path="/shopping/:id/:productName" exact>
           <ProductPage />
         </Route>
-        <Route path="/shopping/:gender/:category?" exact>
+        <Route path="/shoping/:gender/:category?" exact>
           <ProductListPage />
         </Route>
         <Route path="/contact" exact>
