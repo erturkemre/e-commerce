@@ -26,7 +26,7 @@ const OrderSummaryBox = ({ productInCart }) => {
           <h2>Kargo Toplam:</h2>
           <h2>29.99₺</h2>
         </div>
-        {totalProductPrice > 150 && (
+        {totalProductPrice > 150 &&(
           <div className="flex flex-row justify-evenly items-center">
             <h2 className="w-28 px-1 text-red-700">
               150₺ ve Üzeri Bedava (Satıcı Karşılar):

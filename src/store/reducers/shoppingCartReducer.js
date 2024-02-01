@@ -10,7 +10,7 @@ import {
 const initialState = {
   cartList: [],
   payment: {},
-  adress: {},
+  adresses: [],
 };
 
 const updateCart = (cartList, newProduct) => {
@@ -80,7 +80,7 @@ const reducer = (state = initialState, action) => {
     case SET_PAYMENT:
       return { ...state, payment: action.payload };
     case SET_ADDRESS:
-      return { ...state, adress: action.payload };
+      return { ...state, adresses:  [...state.adresses, action.payload]};
     default:
       return state;
   }

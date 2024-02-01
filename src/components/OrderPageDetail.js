@@ -1,9 +1,10 @@
 import { AlertCircle } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import OrderAdressDetails from "./OrderAdressDetails";
 
 const OrderPageDetail = () => {
+  const [content, setContent] = useState(0);
   const productInCart = useSelector(
     (store) => store.shoppingCartReducer.cartList
   );
@@ -19,17 +20,37 @@ const OrderPageDetail = () => {
       <div className="basis-3/4 flex flex-col px-8 py-3 gap-3">
         <div className="flex flex-row border-2 rounded-lg">
           <div className=" basis-1/2 border-r-2">
-            <button className="w-full h-full flex flex-col">
-              <h2>Adres Bilgileri</h2>
+            <button
+              className={`w-full h-full flex flex-col justify-between items-start ${
+                content === 0 ? "bg-white" : ""
+              }`}
+              onClick={() => setContent(0)}
+            >
+              <h2 className="px-4 font-semibold">Adres Bilgileri</h2>
               <h2>Adres Ekle</h2>
+              {content === 0 ? (
+                <div className="w-full h-1 bg-[#23A6F0]"></div>
+              ) : (
+                <div className="w-full h-1 bg-[#FAFAFA]"></div>
+              )}
             </button>
           </div>
           <div className="basis-1/2">
-            <button className="w-full h-full flex flex-col justify-between items-start">
-              <h2>Ödeme Bilgileri</h2>
-              <p>
-                Banka/Kredi Kartı veya Alışveriş kredisi ile ödeyebilirsiniz{" "}
+            <button
+              className={`w-full h-20 flex flex-col justify-between items-start ${
+                content === 1 ? "bg-white" : ""
+              }`}
+              onClick={() => setContent(1)}
+            >
+              <h2 className="px-4 font-semibold">Ödeme Bilgileri</h2>
+              <p className="px-4 font-semibold text-xs">
+                Banka/Kredi Kartı veya Alışveriş kredisi ile ödeyebilirsiniz.
               </p>
+              {content === 1 ? (
+                <div className="w-full h-1 bg-[#23A6F0]"></div>
+              ) : (
+                <div className="w-full h-1 bg-[#FAFAFA]"></div>
+              )}
             </button>
           </div>
         </div>
@@ -45,11 +66,11 @@ const OrderPageDetail = () => {
           <div className="flex flex-row justify-between items-center">
             <h2 className="text-xl font-semibold  ">Teslimat Adresi</h2>
             <div className="flex flex-row items-center gap-2">
-              <input type="checkbox" className="w-5 h-5" checked/>
+              <input type="checkbox" className="w-5 h-5" checked />
               <label>Faturamı Aynı Adrese Gönder</label>
             </div>
           </div>
-          <OrderAdressDetails />
+          {content === 0 ? <OrderAdressDetails /> : <div></div>}
         </div>
       </div>
       <div className="flex flex-col gap-5 basis-1/4 pe-20 py-3 gap">
