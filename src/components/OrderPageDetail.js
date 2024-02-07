@@ -1,10 +1,15 @@
-import { AlertCircle } from "lucide-react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import OrderAdressDetails from "./OrderAdressDetails";
+import OrderCardDetail from "./OrderCardDetail";
 
 const OrderPageDetail = () => {
   const [content, setContent] = useState(0);
+  const [choosingAdress, setChoosingAdress] = useState(null);
+
+  const choosedAdress = useSelector(
+    (state) => state.shoppingCartReducer.adresses[choosingAdress]
+  );
   const productInCart = useSelector(
     (store) => store.shoppingCartReducer.cartList
   );
@@ -15,10 +20,15 @@ const OrderPageDetail = () => {
         : acc,
     0
   );
+  const onChooseAdress = (index) => {
+    setChoosingAdress(index);
+    console.log(choosingAdress);
+  };
+
   return (
     <div className="flex flex-row">
       <div className="basis-3/4 flex flex-col px-8 py-3 gap-3">
-        <div className="flex flex-row border-2 rounded-lg">
+        <div className="flex flex-row border-2 rounded-lg ">
           <div className=" basis-1/2 border-r-2">
             <button
               className={`w-full h-full flex flex-col justify-between items-start ${
@@ -26,8 +36,18 @@ const OrderPageDetail = () => {
               }`}
               onClick={() => setContent(0)}
             >
-              <h2 className="px-4 font-semibold">Adres Bilgileri</h2>
-              <h2>Adres Ekle</h2>
+              <h2 className="px-4 py-4 font-semibold">Adres Bilgileri</h2>
+              <h2 className="px-4 font-semibold text-xs">
+                {choosedAdress ? (
+                  <div className="flex flex-col items-start py-2 gap-1">
+                    <h2>{choosedAdress.title}</h2>{" "}
+                    <p>{choosedAdress.address}</p>
+                    <div>{choosedAdress.district}/{choosedAdress.city}</div>
+                  </div>
+                ) : (
+                  "Adres Seçin"
+                )}
+              </h2>{" "}
               {content === 0 ? (
                 <div className="w-full h-1 bg-[#23A6F0]"></div>
               ) : (
@@ -37,13 +57,13 @@ const OrderPageDetail = () => {
           </div>
           <div className="basis-1/2">
             <button
-              className={`w-full h-20 flex flex-col justify-between items-start ${
+              className={`w-full h-full flex flex-col justify-between items-start ${
                 content === 1 ? "bg-white" : ""
               }`}
               onClick={() => setContent(1)}
             >
-              <h2 className="px-4 font-semibold">Ödeme Bilgileri</h2>
-              <p className="px-4 font-semibold text-xs">
+              <h2 className="px-4 py-4 font-semibold">Ödeme Bilgileri</h2>
+              <p className="px-4 py-2 font-semibold text-xs">
                 Banka/Kredi Kartı veya Alışveriş kredisi ile ödeyebilirsiniz.
               </p>
               {content === 1 ? (
@@ -54,23 +74,12 @@ const OrderPageDetail = () => {
             </button>
           </div>
         </div>
-        <div className="flex flex-row bg-light-blue-50 rounded-md px-3 py-2 gap-3 ">
-          <AlertCircle size={28} color="#008000" />
-          <h3 className=" font-semibold ">
-            Kurumsal faturalı alışveriş yapmak için "Faturamı aynı adrese
-            gönder" tikini kaldırın ve fatura adresi olarak kayıtlı kurumsal
-            adresinizi seçin.
-          </h3>
-        </div>
-        <div className="flex flex-col border-2 rounded-lg px-10 gap-5 py-5">
-          <div className="flex flex-row justify-between items-center">
-            <h2 className="text-xl font-semibold  ">Teslimat Adresi</h2>
-            <div className="flex flex-row items-center gap-2">
-              <input type="checkbox" className="w-5 h-5" checked />
-              <label>Faturamı Aynı Adrese Gönder</label>
-            </div>
-          </div>
-          {content === 0 ? <OrderAdressDetails /> : <div></div>}
+        <div className="flex flex-col rounded-lg gap-5 py-5">
+          {content === 0 ? (
+            <OrderAdressDetails onChooseAdress={onChooseAdress} />
+          ) : (
+            <OrderCardDetail />
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-5 basis-1/4 pe-20 py-3 gap">
